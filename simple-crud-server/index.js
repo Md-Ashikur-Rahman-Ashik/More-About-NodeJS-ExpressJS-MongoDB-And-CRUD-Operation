@@ -1,18 +1,18 @@
 const express = require("express");
 const cors = require("cors");
+const { MongoClient, ServerApiVersion } = require("mongodb");
 const app = express();
 const port = process.env.PORT || 5000;
 
-// Middlewares
 app.use(cors());
 app.use(express.json());
 
 // mdashikurupwork
 // DUz4ya7QjHQUkf6K
 
-const { MongoClient, ServerApiVersion } = require("mongodb");
+
 const uri =
-  "mongodb+srv://mdashikurupwork:<password>@cluster0.tx9lkv1.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+  "mongodb+srv://mdashikurupwork:DUz4ya7QjHQUkf6K@cluster0.tx9lkv1.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
@@ -34,7 +34,7 @@ async function run() {
     );
   } finally {
     // Ensures that the client will close when you finish/error
-    await client.close();
+    // await client.close();
   }
 }
 run().catch(console.dir);
@@ -44,5 +44,5 @@ app.get("/", (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`SIMPLE CRUD  is running on port: ${port}`);
+  console.log(`SIMPLE CRUD is running on port: ${port}`);
 });
