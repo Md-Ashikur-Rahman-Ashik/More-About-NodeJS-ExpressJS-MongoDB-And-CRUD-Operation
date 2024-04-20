@@ -5,11 +5,16 @@ const Users = () => {
   const handleDelete = (_id) => {
     console.log("Delete", _id);
 
-    fetch(`http://localhost:5173/users/${_id}`, {
+    fetch(`http://localhost:5000/users/${_id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => {
+        console.log(data);
+        if (data.deletedCount > 0) {
+          alert("User deleted successfully");
+        }
+      });
   };
 
   return (
@@ -18,7 +23,7 @@ const Users = () => {
       <div>
         {users.map((user) => (
           <p key={user._id}>
-            {user.name} : {user.email}{" "}
+            {user.name} : {user.email}
             <button onClick={() => handleDelete(user._id)}>Delete</button>
           </p>
         ))}
